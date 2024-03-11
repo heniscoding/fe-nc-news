@@ -1,3 +1,5 @@
+import { formatAPIDate } from "./Utils";
+
 function ArticleCard({ article }) {
   const {
     author,
@@ -15,10 +17,14 @@ function ArticleCard({ article }) {
       <div className="flex-container">
         <div className="article-card-title">{title}</div>
         <div className="article-card-author">Author: {author}</div>
-        <div className="article-card-topic">Topic: {topic}</div>
-        <div className="article-card-created">Created: {created_at}</div>
+        <div className="article-card-topic">Category: {topic}</div>
+        <div className="article-card-created">
+          Created: {formatAPIDate({ created_at })}
+        </div>
         <div className="article-card-votes">Votes: {votes}</div>
-        <div className="article-card-comment-count">Comments: {comment_count}</div>
+        <div className="article-card-comment-count">
+          Comments: {comment_count}
+        </div>
       </div>
     </section>
   );

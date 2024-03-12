@@ -6,6 +6,9 @@ import ArticlesList from "./components/ArticlesList";
 import ArticleDetails from "./components/ArticleDetails";
 
 function App() {
+  const user = {
+    username: 'tickle122',
+  };
   return (
     <div>
       <Navbar />
@@ -15,7 +18,7 @@ function App() {
           <Route path="/articles" element={<ArticlesList />}></Route>
           <Route
             path="/articles/:article_id"
-            element={<ArticleDetails />}
+            element={<ArticleDetails user={user}/>}
           ></Route>
         </Routes>
       </main>

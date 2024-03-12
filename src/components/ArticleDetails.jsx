@@ -50,9 +50,9 @@ function ArticleDetails({ user }) {
   };
 
   const refreshComments = () => {
-    getArticleById(article_id)
+    getCommentsByArticleId(article_id)
       .then((response) => {
-        setArticle(response.data.article);
+        setComments(response.data.comments);
       })
       .catch((error) => {
         console.log(error);

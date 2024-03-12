@@ -1,5 +1,5 @@
-export function formatAPIDate() {
-    const date = new Date();
+export function formatAPIDate(apiDate) {
+    const date = new Date(apiDate);
     
     const options = { 
       year: 'numeric', 

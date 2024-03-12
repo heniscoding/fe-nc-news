@@ -11,6 +11,8 @@ function ArticleCard({ article }) {
     comment_count,
   } = article;
 
+  console.log(created_at)
+
   return (
     <section className="article-card">
       <img className="article-card-img" src={article_img_url} alt="" />
@@ -19,7 +21,7 @@ function ArticleCard({ article }) {
         <div className="article-card-author">Author: {author}</div>
         <div className="article-card-topic">Category: {topic}</div>
         <div className="article-card-created">
-          Created: {formatAPIDate({ created_at })}
+          Created: {formatAPIDate( created_at )}
         </div>
         <div className="article-card-votes">Votes: {votes}</div>
         <div className="article-card-comment-count">

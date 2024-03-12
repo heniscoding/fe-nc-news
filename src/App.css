@@ -145,3 +145,31 @@ header {
   margin: 20px 0;
   text-align: left;
 }
+
+/* COMMENTS SECTION STYLES */
+
+.comment-card {
+  padding: 20px 0;
+  margin: 20px 0;
+  background-color: #e2f8ff;
+}
+
+.comments-section h2 {
+  text-align: left;
+  font-size: 20pt;
+}
+
+.comment-card-body {
+  text-align: left;
+}
+
+.comment-card-author {
+  font-size: 14pt;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.comment-card-votes {
+  font-weight: bold;
+  margin: 10px 0 0 0;
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../api";
 import { formatAPIDate } from "./Utils";
+import CommentsList from "./CommentsList";
 
 function ArticleDetails() {
   const [article, setArticle] = useState({});
@@ -34,6 +35,10 @@ function ArticleDetails() {
         />
       </div>
       <div className="full-article-body">{article.body}</div>
+      <div className="comments-section">
+        <h2 ClassName="comments-section-header">Comments</h2>
+        <CommentsList article_id={article_id} />
+      </div>
     </section>
   );
 }

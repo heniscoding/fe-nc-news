@@ -13,3 +13,7 @@ export function getArticleById(article_id) {
 export function getCommentsByArticleId(article_id){
   return axios.get(BASE_URL + "/articles/" + article_id + "/comments")
 }
+
+export function updateVoteByArticleId(article_id, inc_votes){
+  return axios.patch(BASE_URL + "/articles/" + article_id, { inc_votes })
+}

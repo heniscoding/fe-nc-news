@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import { getCommentsByArticleId } from "../api";
-import { CommentsCard } from "./CommentsCard"
+import { CommentsCard } from "./CommentsCard";
 
-export default function CommentsList({ article_id }) {
+export default function CommentsList({ article_id, refreshComments }) {
   const [comments, setComments] = useState(null);
 
   useEffect(() => {
-    getCommentsByArticleId(article_id)
-      .then(({ data }) => {
-        setComments(data.comments);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    const fetchComments = () => {
+      getCommentsByArticleId(article_id)
+        .then(({ data }) => {
+          setComments(data.comments);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    fetchComments();
+  }, [article_id, refreshComments]);
 
   if (comments === null) {
     return <Loading />;

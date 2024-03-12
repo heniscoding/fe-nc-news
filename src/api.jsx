@@ -1,19 +1,25 @@
 import axios from "axios";
 
-const BASE_URL = "https://be-nc-news-yvgn.onrender.com/api";
+const instance = axios.create({
+  baseURL: "https://be-nc-news-yvgn.onrender.com/api",
+});
 
 export function getArticles() {
-  return axios.get(BASE_URL + "/articles");
+  return instance.get("/articles");
 }
 
 export function getArticleById(article_id) {
-  return axios.get(BASE_URL + "/articles/" + article_id)
+  return instance.get(`/articles/${article_id}`);
 }
 
-export function getCommentsByArticleId(article_id){
-  return axios.get(BASE_URL + "/articles/" + article_id + "/comments")
+export function getCommentsByArticleId(article_id) {
+  return instance.get(`/articles/${article_id}/comments`);
 }
 
-export function updateVoteByArticleId(article_id, inc_votes){
-  return axios.patch(BASE_URL + "/articles/" + article_id, { inc_votes })
+export function updateVoteByArticleId(article_id, inc_votes) {
+  return instance.patch(`/articles/${article_id}`, { inc_votes });
+}
+
+export function postCommentByArticleId(article_id, username, body) {
+  return instance.post(`/articles/${article_id}/comments`, { username, body });
 }

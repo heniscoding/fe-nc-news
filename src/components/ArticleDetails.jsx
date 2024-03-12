@@ -4,10 +4,12 @@ import { getArticleById, updateVoteByArticleId } from "../api";
 import { formatAPIDate } from "./Utils";
 import CommentsList from "./CommentsList";
 import Loading from "./Loading";
+import CommentForm from "./CommentForm";
 import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 
-function ArticleDetails() {
+function ArticleDetails({ user }) {
   const [article, setArticle] = useState(null);
+  const [error, setError] = useState(null);
   const [hasVoted, setHasVoted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { article_id } = useParams();
@@ -42,11 +44,19 @@ function ArticleDetails() {
           }));
           setHasVoted(false);
           console.log(error);
-          alert("Failed to vote. Please try again.");
+          setError("Failed to vote. Please try again.");
         });
-    } else {
-      alert("You can only vote once.");
     }
+  };
+
+  const refreshComments = () => {
+    getArticleById(article_id)
+      .then((response) => {
+        setArticle(response.data.article);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   if (isLoading) {
@@ -71,6 +81,7 @@ function ArticleDetails() {
           </button>
         </div>
       </div>
+      {error && <p className="error-message">{error}</p>}
 
       <div className="image-container">
         <img
@@ -80,9 +91,18 @@ function ArticleDetails() {
         />
       </div>
       <div className="full-article-body">{article.body}</div>
+
       <div className="comments-section">
         <h2 className="comments-section-header">Comments</h2>
-        <CommentsList article_id={article_id} />
+        <CommentForm
+          articleId={article_id}
+          user={user}
+          refreshComments={refreshComments}
+        />
+        <CommentsList
+          article_id={article_id}
+          refreshComments={refreshComments}
+        />
       </div>
     </section>
   );

@@ -2,13 +2,18 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1280px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Lato', sans-serif;
 }
 
@@ -61,7 +66,7 @@ header {
   margin: 10px 0;
   background-color: #f4f4f4;
   padding: 10px;
-  box-shadow: 0px 0px 4px;
+  /* box-shadow: 0px 0px 4px; */
   color: black;
 }
 
@@ -175,15 +180,27 @@ header {
 
 /* COMMENTS SECTION STYLES */
 
+.logged-in-user-text {
+  color: #70243c;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
 .comment-card {
   padding: 20px 0;
-  margin: 20px 0;
+  margin: 20px 20px;
   background-color: #e2f8ff;
+}
+
+.comments-section {
+  background-color: #f7f7f7;
 }
 
 .comments-section h2 {
   text-align: left;
   font-size: 20pt;
+  padding: 20px 0 0 20px;
+  margin-bottom: 0px;
 }
 
 .comment-card-body {
@@ -204,4 +221,57 @@ header {
 .vote-buttons {
   display: inline-block;
   padding: 0 10px;
+}
+
+/* COMMENT FORM STYLES */
+
+.comment-form {
+  padding: 20px 20px 0 20px;
+  margin: 0 auto;
+}
+
+.comment-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.comment-form textarea {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.comment-form button {
+  padding: 10px 20px;
+  background-color: #70243c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.comment-form button:hover {
+  background-color: #481726;
+}
+
+.comment-form p {
+  margin-top: 10px;
+  color: green;
+  text-align: left;
+}
+
+.comment-form p.error {
+  color: red;
 }

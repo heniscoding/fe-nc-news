@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById, updateVoteByArticleId } from "../api";
+import {
+  getArticleById,
+  updateVoteByArticleId,
+  getCommentsByArticleId,
+} from "../api";
 import { formatAPIDate } from "./Utils";
 import CommentsList from "./CommentsList";
 import Loading from "./Loading";
@@ -9,10 +13,21 @@ import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
 
 function ArticleDetails({ user }) {
   const [article, setArticle] = useState(null);
+  const [comments, setComments] = useState([]);
   const [error, setError] = useState(null);
   const [hasVoted, setHasVoted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { article_id } = useParams();
+
+  const refreshComments = () => {
+    getCommentsByArticleId(article_id)
+      .then((response) => {
+        setComments(response.data.comments);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -25,6 +40,10 @@ function ArticleDetails({ user }) {
         console.log(error);
         setIsLoading(false);
       });
+  }, [article_id]);
+
+  useEffect(() => {
+    refreshComments();
   }, [article_id]);
 
   const handleVote = (inc_votes) => {
@@ -47,16 +66,6 @@ function ArticleDetails({ user }) {
           setError("Failed to vote. Please try again.");
         });
     }
-  };
-
-  const refreshComments = () => {
-    getCommentsByArticleId(article_id)
-      .then((response) => {
-        setComments(response.data.comments);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   if (isLoading) {
@@ -101,6 +110,8 @@ function ArticleDetails({ user }) {
         />
         <CommentsList
           article_id={article_id}
+          user={user}
+          comments={comments}
           refreshComments={refreshComments}
         />
       </div>

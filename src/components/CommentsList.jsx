@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import { getCommentsByArticleId } from "../api";
+import { getCommentsByArticleId, deleteCommentById } from "../api";
 import { CommentsCard } from "./CommentsCard";
 
-export default function CommentsList({ article_id, refreshComments }) {
+export default function CommentsList({ article_id, refreshComments, user }) {
   const [comments, setComments] = useState(null);
 
   useEffect(() => {
@@ -24,10 +24,27 @@ export default function CommentsList({ article_id, refreshComments }) {
     return <Loading />;
   }
 
+  const handleDeleteComment = (commentId) => {
+    deleteCommentById(commentId)
+      .then(() => {
+        setComments((prevComments) =>
+          prevComments.filter((comment) => comment.comment_id !== commentId)
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       {comments.map((comment) => (
-        <CommentsCard key={comment.comment_id} comment={comment} />
+        <CommentsCard
+          key={comment.comment_id}
+          comment={comment}
+          user={user}
+          onDelete={handleDeleteComment}
+        />
       ))}
     </>
   );

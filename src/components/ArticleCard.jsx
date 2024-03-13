@@ -11,8 +11,6 @@ function ArticleCard({ article }) {
     comment_count,
   } = article;
 
-  console.log(created_at)
-
   return (
     <section className="article-card">
       <img className="article-card-img" src={article_img_url} alt="" />

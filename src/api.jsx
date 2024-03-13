@@ -23,3 +23,7 @@ export function updateVoteByArticleId(article_id, inc_votes) {
 export function postCommentByArticleId(article_id, username, body) {
   return instance.post(`/articles/${article_id}/comments`, { username, body });
 }
+
+export function deleteCommentById(comment_id) {
+  return instance.delete(`/comments/${comment_id}`)
+}

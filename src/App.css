@@ -109,11 +109,7 @@ header {
   font-size: 12pt;
 }
 
-.flex-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
+.comments-container {
   padding: 0px 16px;
   height: 100%;
 }
@@ -187,7 +183,7 @@ header {
 }
 
 .comment-card {
-  padding: 20px 0;
+  padding: 15px 0;
   margin: 20px 20px;
   background-color: #e2f8ff;
 }
@@ -216,6 +212,7 @@ header {
 .comment-card-votes {
   font-weight: bold;
   margin: 10px 0 0 0;
+  text-align: left;
 }
 
 .vote-buttons {
@@ -253,8 +250,9 @@ header {
   background-color: #70243c;
   color: #fff;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+  font-size: 10pt;
+  font-weight: bold;
 }
 
 .comment-form button:disabled {
@@ -263,7 +261,7 @@ header {
 }
 
 .comment-form button:hover {
-  background-color: #481726;
+  background-color: #9c3252;
 }
 
 .comment-form p {
@@ -274,4 +272,23 @@ header {
 
 .comment-form p.error {
   color: red;
+}
+
+.comments-top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-button-container {
+  margin-left: auto;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 0px 16px;
+  height: 100%;
 }

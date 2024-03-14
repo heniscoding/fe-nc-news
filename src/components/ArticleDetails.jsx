@@ -74,7 +74,7 @@ function ArticleDetails({ user }) {
   }
 
   return (
-    <section>
+    <section className="article-section">
       <h1 className="full-article-title">{article.title}</h1>
       <div className="author-date-container">
         Written by {article.author} on {formatAPIDate(article.created_at)}

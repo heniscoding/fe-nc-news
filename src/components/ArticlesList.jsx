@@ -93,8 +93,8 @@ function ArticlesList() {
   }
 
   function showButton() {
-    if (searchParams.size === 0) {
-      return;
+    if (!topic) {
+      return null;
     }
     return (
       <button onClick={removeTopic} className="remove-topic-button">

@@ -1,11 +1,32 @@
 main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+p, .topic-description {
+    font-family: 'Helvetica', sans-serif;
+    line-height: 1.4;
+}
+
+.main-content-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 1080px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  min-height: 100vh;
+}
+
+.main-home-content {
+  height: auto;
+  max-width: 800px;
+  max-width: 800px;
+  margin: 10px 0;
+  background-color: #f4f4f4;
+  padding: 10px;
+  color: black;
 }
 
 h1,
@@ -30,6 +51,9 @@ body {
 
 #navbar a {
   color: white;
+  font-family: 'Helvetica', sans-serif;
+  line-height: 1.4;
+  
 }
 
 #navbar a:hover {
@@ -39,7 +63,7 @@ body {
 #navbar>a {
   margin: 0 20px;
   text-decoration: none;
-  font-size: 14pt;
+  font-size: 13pt;
 }
 
 #app-header {
@@ -52,14 +76,13 @@ body {
 }
 
 header {
-  width: 100vw;
   text-align: center;
   border-bottom: 2px solid rgb(0, 0, 0);
-
 }
 
 /* ARTICLE CARD */
 .article-card {
+  font-family: 'Helvetica', sans-serif;
   height: 180px;
   width: 800px;
   max-width: 800px;
@@ -82,31 +105,32 @@ header {
 }
 
 .article-card-title {
-  font-size: 14pt;
-  font-weight: 600;
+  font-size: 12pt;
+  line-height: 1.4;
+  font-weight: 900;
   text-align: left;
   ;
 }
 
 .article-card-author {
-  font-size: 12pt;
+  font-size: 11pt;
 }
 
 .article-card-topic {
-  font-size: 12pt;
+  font-size: 11pt;
 }
 
 .article-card-created {
-  font-size: 12pt;
+  font-size: 11pt;
   text-align: left;
 }
 
 .article-card-votes {
-  font-size: 12pt;
+  font-size: 11pt;
 }
 
 .article-card-comment-count {
-  font-size: 12pt;
+  font-size: 11pt;
 }
 
 .comments-container {
@@ -129,16 +153,25 @@ header {
 
 /* FULL ARTICLE STYLES */
 
+.article-section {
+  max-width: 1080px;
+  margin-bottom: 20px;
+  background-color: #212121;
+  color: white;
+}
+
 .full-article-title {
-  font-size: 30pt;
+  font-size: 26pt;
   margin: 20px 0;
+  padding: 0 20px;
 }
 
 .full-article-img {
   width: 100%;
-  height: 450px;
-  border: 2px solid black;
+  height: 350px;
   object-fit: cover;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 .author-date-container {
@@ -149,29 +182,30 @@ header {
 .full-article-topic {
   display: inline-block;
   background: #000;
-  border-radius: 2px;
   font-size: 14pt;
   color: #FFF;
   padding: 6px 10px;
   cursor: pointer;
   margin: 20px 5ox;
+  border: 1px solid white;
 }
 
 .full-article-votes {
   display: inline-block;
   background: #000;
-  border-radius: 2px;
   font-size: 14pt;
   color: #FFF;
   padding: 6px 10px;
   cursor: pointer;
   margin: 20px 5px;
+  border: 1px solid white;
 }
 
 .full-article-body {
-  font-size: 13pt;
-  margin: 20px 0;
+  font-size: 14pt;
+  margin: 40px 0;
   text-align: left;
+  padding: 0 50px;
 }
 
 /* COMMENTS SECTION STYLES */
@@ -191,6 +225,8 @@ header {
 .comments-section {
   background-color: #f7f7f7;
   padding-bottom: 5px;
+  color: black;
+  border: 1px solid #eaeaea;
 }
 
 .comments-section h2 {
@@ -303,7 +339,6 @@ header {
 .topic-card {
   height: 90px;
   width: 800px;
-  max-width: 800px;
   margin: 10px 0;
   background-color: #f4f4f4;
   padding: 10px;
@@ -380,4 +415,15 @@ header {
 
 .sort-button:hover {
   background-color: #666;
+}
+
+/* FOOTER */
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

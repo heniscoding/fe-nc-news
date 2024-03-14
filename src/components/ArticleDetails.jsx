@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import {
   getArticleById,
@@ -78,7 +79,10 @@ function ArticleDetails({ user }) {
       <div className="author-date-container">
         Written by {article.author} on {formatAPIDate(article.created_at)}
       </div>
-      <div className="full-article-topic">Category: {article.topic}</div>
+
+      <Link to={`/articles?topic=${article.topic}`}>
+        <div className="full-article-topic">Category: {article.topic}</div>
+      </Link>
       <div className="full-article-votes">
         Votes: {article.votes}
         <div className="vote-buttons">

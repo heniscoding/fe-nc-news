@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import Loading from "./Loading";
 import { getArticles, getArticlesByTopic } from "../api";
@@ -6,36 +6,84 @@ import { Link, useSearchParams } from "react-router-dom";
 
 function ArticlesList() {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [sortBy, setSortBy] = useState("created_at");
+  const [sortOrder, setSortOrder] = useState("desc");
 
   const topic = searchParams.get("topic");
+
   useEffect(() => {
+    setLoading(true);
+    setError(null);
+
     const fetchArticles = () => {
+      let articlesPromise;
       if (topic) {
-        getArticlesByTopic(topic)
-          .then(({ data }) => {
-            setArticles(data.articles);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        articlesPromise = getArticlesByTopic(topic);
       } else {
-        getArticles()
-          .then(({ data }) => {
-            setArticles(data.articles);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        articlesPromise = getArticles();
       }
+
+      articlesPromise
+        .then((response) => {
+          let sortedArticles = response.data.articles;
+          sortedArticles = sortArticles(sortedArticles);
+          setArticles(sortedArticles);
+        })
+        .catch((error) => {
+          console.error("Error fetching articles:", error);
+          setError("Failed to fetch articles. Please try again.");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     };
 
     fetchArticles();
-  }, [searchParams]);
+  }, [searchParams, topic, sortBy, sortOrder]);
 
-  if (articles === null) {
-    return <Loading />;
-  }
+  const sortArticles = (articlesToSort) => {
+    return articlesToSort.sort((a, b) => {
+      let valueA, valueB;
+
+      if (sortBy === "comment_count") {
+        valueA = a.comment_count;
+        valueB = b.comment_count;
+      } else if (sortBy === "votes") {
+        valueA = a.votes;
+        valueB = b.votes;
+      } else {
+        valueA = new Date(a.created_at);
+        valueB = new Date(b.created_at);
+      }
+
+      if (sortOrder === "asc") {
+        return valueA - valueB;
+      } else {
+        return valueB - valueA;
+      }
+    });
+  };
+
+  const handleSortByChange = (value) => {
+    setSortBy(value);
+    setSearchParams((prevParams) => {
+      const params = new URLSearchParams(prevParams);
+      params.set("sortBy", value);
+      return params;
+    });
+  };
+
+  const handleSortOrderToggle = () => {
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    setSearchParams((prevParams) => {
+      const params = new URLSearchParams(prevParams);
+      params.set("sortOrder", sortOrder === "asc" ? "desc" : "asc");
+      return params;
+    });
+  };
 
   function removeTopic() {
     if (searchParams.has("topic")) {
@@ -55,9 +103,32 @@ function ArticlesList() {
     );
   }
 
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
   return (
-    <>
-      {showButton()}
+    <div>
+      <div className="sort-container">
+        <label className="sort-label">Sort by:</label>
+        <select
+          className="sort-select"
+          value={sortBy}
+          onChange={(e) => handleSortByChange(e.target.value)}
+        >
+          <option value="created_at">Date</option>
+          <option value="comment_count">Comment Count</option>
+          <option value="votes">Votes</option>
+        </select>
+        <button className="sort-button" onClick={handleSortOrderToggle}>
+          ASC / DESC
+        </button>
+        <div>{showButton()}</div>
+      </div>
       {articles.map((article) => (
         <Link
           key={article.article_id}
@@ -67,7 +138,7 @@ function ArticlesList() {
           <ArticleCard article={article} />
         </Link>
       ))}
-    </>
+    </div>
   );
 }
 

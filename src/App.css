@@ -190,6 +190,7 @@ header {
 
 .comments-section {
   background-color: #f7f7f7;
+  padding-bottom: 5px;
 }
 
 .comments-section h2 {
@@ -342,4 +343,41 @@ header {
   cursor: pointer;
   font-size: 10pt;
   font-weight: bold;
+  margin-left: 10px;
+}
+
+/* SORTING */
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.sort-label {
+  color: #fff;
+  margin-right: 10px;
+}
+
+.sort-select {
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid black;
+  padding: 8px;
+  margin-right: 10px;
+}
+
+.sort-button {
+  padding: 10px 20px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 10pt;
+  font-weight: bold;
+}
+
+.sort-button:hover {
+  background-color: #666;
 }

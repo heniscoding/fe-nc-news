@@ -27,3 +27,11 @@ export function postCommentByArticleId(article_id, username, body) {
 export function deleteCommentById(comment_id) {
   return instance.delete(`/comments/${comment_id}`)
 }
+
+export function getTopics() {
+  return instance.get(`/topics`);
+}
+
+export function getArticlesByTopic(topic) {
+  return instance.get(`/articles?topic=` + topic);
+}

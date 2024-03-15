@@ -3,7 +3,7 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 40px;
+  margin-top: 120px;
 }
 
 p, .topic-description {
@@ -29,7 +29,10 @@ p, .topic-description {
   color: black;
 }
 
-h1,
+h1 {
+  font-family: 'Rubik', sans-serif;
+}
+
 h2,
 h3,
 h4,
@@ -250,13 +253,12 @@ header {
 
 .comment-card-votes {
   font-weight: bold;
-    margin: 10px 0 0 0;
-    text-align: center;
-    background: #373737;
-    width: 65px;
-    padding: 5px;
-    color: whitesmoke;
-
+  margin: 10px 0 0 0;
+  text-align: center;
+  background: #373737;
+  width: 82px;
+  padding: 2px;
+  color: whitesmoke;
 }
 
 .vote-buttons {
@@ -426,8 +428,25 @@ header {
   background-color: #666;
 }
 
-/* FOOTER */
+/* BOOTSTRAP STYLES */
+.bg-dark {
+  background-color: #70243c !important;
+  color: white !important;
+}
 
+.navbar a {
+  color: white !important;
+}
+
+.navbar {
+  border-bottom: 2px solid black;
+}
+
+.menu-container {
+  max-width: 920px;
+}
+
+/* FOOTER */
 .footer {
   background-color: #333;
   color: #fff;

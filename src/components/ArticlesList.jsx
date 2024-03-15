@@ -18,30 +18,34 @@ function ArticlesList() {
     setLoading(true);
     setError(null);
 
-    const fetchArticles = () => {
-      let articlesPromise;
-      if (topic) {
-        articlesPromise = getArticlesByTopic(topic);
-      } else {
-        articlesPromise = getArticles();
-      }
-
-      articlesPromise
-        .then((response) => {
-          let sortedArticles = response.data.articles;
-          sortedArticles = sortArticles(sortedArticles);
-          setArticles(sortedArticles);
-        })
-        .catch((error) => {
-          console.error("Error fetching articles:", error);
+    let articlesPromise;
+    if (topic) {
+      articlesPromise = getArticlesByTopic(topic).catch((error) => {
+        console.error("Error fetching articles by topic:", error);
+        if (error.response && error.response.status === 404) {
+          setError(`Topic "${topic}" not found.`);
+        } else {
           setError("Failed to fetch articles. Please try again.");
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    };
+        }
+        return [];
+      });
+    } else {
+      articlesPromise = getArticles().catch((error) => {
+        console.error("Error fetching articles:", error);
+        setError("Failed to fetch articles. Please try again.");
+        return [];
+      });
+    }
 
-    fetchArticles();
+    articlesPromise
+      .then((response) => {
+        let sortedArticles = response.data.articles;
+        sortedArticles = sortArticles(sortedArticles);
+        setArticles(sortedArticles);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [searchParams, topic, sortBy, sortOrder]);
 
   const sortArticles = (articlesToSort) => {

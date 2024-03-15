@@ -1,6 +1,5 @@
 
-
-## Welcome to Henry's NC News: A Social News Platform
+# Welcome to Henry's NC News: A Social News Platform
 
 Northcoders News is a dynamic web application built with React, serving as a platform for news aggregation, content rating, and discussion. The application interacts with a backend API, developed in a previous project, to provide a rich user interface. Users can browse articles, cast votes, filter by topic, as well as contribute to the discussion by posting and deleting comments.
 

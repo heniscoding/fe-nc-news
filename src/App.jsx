@@ -1,6 +1,7 @@
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar";
+import NavHeader from "./components/NavHeader";
 import Home from "./components/Home";
 import ArticlesList from "./components/ArticlesList";
 import ArticleDetails from "./components/ArticleDetails";
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <div className="main-content-container">
-      <Navbar />
+      <NavHeader />
       <main>
         <Routes>
           <Route path="/" element={<Home />}></Route>

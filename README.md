@@ -26,7 +26,7 @@ Now, the application should be accessible in your web browser.
 
 ### Links
 
-- Live Site URL: https://henrys-northcoder-news.netlify.app/
+- Live Site URL: https://fe-nc-news.henryalderslade.com
 - Live API URL: https://be-nc-news.henryalderslade.com/api/articles
 
 ### Built with

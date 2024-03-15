@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import NewsTicker from "./NewsTicker"; 
 
 function NavHeader() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -15,7 +14,6 @@ function NavHeader() {
 
   return (
     <header>
-    <NewsTicker/>
       <nav
         className={`navbar navbar-expand-lg navbar-dark bg-dark fixed-top ${
           isNavOpen ? "show" : ""
